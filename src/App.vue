@@ -9,72 +9,12 @@
       </div>
       <NewTweet></NewTweet>
       <div class="flex flex-col-reverse">
-        <div v-for="(tweet,index) in tweets" :key="index" class="w-full p-4 border-b hover:bg-lighter flex">
-          <div class="flex-none mr-4">
-            <img src="profile.png" class="h-12 w-12 rounded-full flex-none"/>
-          </div>
-          <div class="w-full">
-            <div class="flex items-center w-full">
-              <p class="font-semibold"> Steph Dietz </p>
-              <p class="text-sm text-dark ml-2"> @SaaSyEth </p>
-              <p class="text-sm text-dark ml-2"> 1 sec </p>
-              <i class="fas fa-angle-down text-dark ml-auto"></i>
-            </div>
-            <p class="py-2">
-              {{ tweet.content }}
-            </p>
-            <div class="flex items-center justify-between w-full">
-              <div class="flex items-center text-sm text-dark">
-                <i class="far fa-comment mr-3"></i>
-                <p> 0 </p>
-              </div>
-              <div class="flex items-center text-sm text-dark">
-                <i class="fas fa-retweet mr-3"></i>
-                <p> 0 </p>
-              </div>
-              <div class="flex items-center text-sm text-dark">
-                <i class="fas fa-heart mr-3"></i>
-                <p> 1 </p>
-              </div>
-              <div class="flex items-center text-sm text-dark">
-                <i class="fas fa-share-square mr-3"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+<!--        <div v-for="(tweet,index) in getTweets" :key="index">-->
+<!--          <ShowTweet :tweet="tweet"></ShowTweet>-->
+<!--        </div>-->
       </div>
-      <div v-for="(follow,index) in following" :key="index" class="w-full p-4 border-b hover:bg-lighter flex">
-        <div class="flex-none mr-4">
-          <img :src="`${follow.src}`" class="h-12 w-12 rounded-full flex-none"/>
-        </div>
-        <div class="w-full">
-          <div class="flex items-center w-full">
-            <p class="font-semibold"> {{ follow.name }} </p>
-            <p class="text-sm text-dark ml-2"> {{ follow.handle }} </p>
-            <p class="text-sm text-dark ml-2"> {{ follow.time }} </p>
-            <i class="fas fa-angle-down text-dark ml-auto"></i>
-          </div>
-          <p class="py-2">
-            {{ follow.tweet }}
-          </p>
-          <div class="flex items-center justify-between w-full">
-            <div class="flex items-center text-sm text-dark">
-              <i class="far fa-comment mr-3"></i>
-              <p> {{ follow.comments }} </p>
-            </div>
-            <div class="flex items-center text-sm text-dark">
-              <i class="fas fa-retweet mr-3"></i>
-              <p> {{ follow.retweets }} </p>
-            </div>
-            <div class="flex items-center text-sm text-dark">
-              <i class="fas fa-heart mr-3"></i>
-              <p> {{ follow.like }} </p>
-            </div>
-            <div class="flex items-center text-sm text-dark">
-              <i class="fas fa-share-square mr-3"></i>
-            </div>
-          </div>
-        </div>
+      <div v-for="(follow,index) in getTweets" :key="index" class="w-full p-4 border-b hover:bg-lighter flex">
+        <ShowTweet :tweet="follow"></ShowTweet>
       </div>
     </div>
     <Trending :trending="trending" :friends="friends"></Trending>
@@ -85,13 +25,16 @@
 import SideNav from "@/components/SideNav";
 import NewTweet from "@/components/NewTweet";
 import Trending from "@/components/Trending";
+import ShowTweet from "@/components/ShowTweet";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'app',
   components: {
     Trending,
     NewTweet,
-    SideNav
+    SideNav,
+    ShowTweet
   },
   data() {
     return {
@@ -119,53 +62,12 @@ export default {
         {src: 'monk.jpg', name: 'Adrian Monk', handle: '@detective:)'},
         {src: 'kevin.jpg', name: 'Kevin Hart', handle: '@miniRock'}
       ],
-      following: [
-        {
-          src: 'elon.jpg',
-          name: 'Elon Musk',
-          handle: '@teslaBoy',
-          time: '20 min',
-          tweet: 'Should I just quarantine on mars??',
-          comments: '1,000',
-          retweets: '550',
-          like: '1,000,003'
-        },
-        {
-          src: 'kevin.jpg',
-          name: 'Kevin Hart',
-          handle: '@miniRock',
-          time: '55 min',
-          tweet: 'Should me and the rock do another sub-par movie together????',
-          comments: '2,030',
-          retweets: '50',
-          like: '20,003'
-        },
-        {
-          src: 'elon.jpg',
-          name: 'Elon Musk',
-          handle: '@teslaBoy',
-          time: '1.4 hr',
-          tweet: 'Haha just made a flame thrower. Should I sell them?',
-          comments: '100,000',
-          retweets: '1,000,002',
-          like: '5,000,003'
-        },
-        {
-          src: 'elon.jpg',
-          name: 'Elon Musk',
-          handle: '@teslaBoy',
-          time: '1.4 hr',
-          tweet: 'Just did something crazy',
-          comments: '100,500',
-          retweets: '1,000,032',
-          like: '5,000,103'
-        }
-      ],
-      tweets: [
-        {content: 'It is so nice outside!'}
-      ],
       tweet: {content: ''}
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getTweets'])
   },
   methods: {
     addNewTweet() {

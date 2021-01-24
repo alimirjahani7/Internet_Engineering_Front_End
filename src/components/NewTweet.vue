@@ -20,20 +20,32 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "NewTweet",
   data() {
     return {
       tweet: {'content': ''},
-      tweets:[]
+      tweets: []
     }
   },
   methods: {
+    ...mapActions([
+      'addTweet'
+    ]),
     addNewTweet() {
       let newTweet = {
+        profile_image: 'elon.jpg',
+        name: 'Elon Musk',
+        handle: '@me',
+        time: 'now',
+        comments: '0',
+        retweets: '0',
+        like: '0',
         content: this.tweet.content
       };
-      this.tweets.push(newTweet)
+      this.addTweet(newTweet)
     }
   }
 }

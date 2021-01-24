@@ -1,5 +1,5 @@
 export default {
-  appendPet: (state, { species, pet }) => {
-    state[species].push(pet)
+  sendTweetToBackend: (state, tweet) => {
+    state.tweets.push(tweet)
   }
 }

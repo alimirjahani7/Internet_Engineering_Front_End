@@ -1,12 +1,5 @@
 export default {
-    animalsCount: (state) => {
-        return state.length;
+    getTweets: (state) => {
+        return state.tweets;
     },
-    getAllCats: (state) => {
-        return state;
-    },
-    getAllDogs: (state) => {
-        return state
-        // return state.dogs;
-    }
 };
