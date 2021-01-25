@@ -9,14 +9,14 @@
         <p class="self-start text-2xl font-sans font-bold mt-6">See what's happening in
           the world right now</p>
         <pre class="self-start font-bold text-sm mt-10">Join Twitter today.</pre>
-        <button
-            class="h-8  items-center w-full hover:bg-darkblue text-1.5xl text-white bg-blue border border-blue rounded-full py-1 px-4 mt-3">
+        <router-link to="/register"
+            class="h-9  text-center  w-full hover:bg-darkblue text-1.5xl text-white bg-blue border border-blue rounded-full py-1 px-4 mt-3">
           Sign up
-        </button>
-        <button
-            class="h-8  items-center w-full  hover:bg-lightblue text-1.5xl text-blue border border-blue rounded-full py-1 px-4 mt-2">
+        </router-link>
+        <router-link to="/login"
+            class="h-9  text-center  w-full  hover:bg-lightblue text-1.5xl text-blue border border-blue rounded-full py-1 px-4 mt-2">
           login
-        </button>
+        </router-link>
 
       </div>
     </div>
