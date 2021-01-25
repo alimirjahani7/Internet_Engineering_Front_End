@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import SideNav from "@/components/SideNav";
-import NewTweet from "@/components/NewTweet";
-import Trending from "@/components/Trending";
-import ShowTweet from "@/components/ShowTweet";
+import SideNav from "../components/SideNav";
+import NewTweet from "../components/NewTweet";
+import Trending from "../components/Trending";
+import ShowTweet from "../components/ShowTweet";
 import {mapGetters} from "vuex";
 
 export default {
