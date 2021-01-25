@@ -1,10 +1,9 @@
 <template>
   <div id='app'>
-    <h1>hii</h1>
-    <div id='nav'>
-      <router-link to='/home'> Home</router-link>
-      <router-link to='/login'>login </router-link>
-    </div>
+<!--    <div class="row" id='nav'>-->
+<!--      <router-link class="pd-2" to='/home'> Home</router-link>-->
+<!--      <router-link to='/login'>login </router-link>-->
+<!--    </div>-->
     <router-view />
   </div>
 </template>
