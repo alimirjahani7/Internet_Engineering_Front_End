@@ -1,6 +1,6 @@
 export default [
   {
-    profile_image: 'elon.jpg',
+    profile_image: 'https://pbs.twimg.com/profile_images/1295975423654977537/dHw9JcrK_400x400.jpg',
     name: 'Elon Musk',
     handle: '@teslaBoy',
     time: '20 min',
@@ -10,7 +10,7 @@ export default [
     like: '1,000,003'
   },
   {
-    profile_image: 'kevin.jpg',
+    profile_image: 'https://pbs.twimg.com/profile_images/1028740334866460672/NcJu6AiT_400x400.jpg',
     name: 'Kevin Hart',
     handle: '@miniRock',
     time: '55 min',
@@ -20,7 +20,7 @@ export default [
     like: '20,003'
   },
   {
-    profile_image: 'elon.jpg',
+    profile_image: 'https://pbs.twimg.com/profile_images/1295975423654977537/dHw9JcrK_400x400.jpg',
     name: 'Elon Musk',
     handle: '@teslaBoy',
     time: '1.4 hr',
@@ -30,7 +30,7 @@ export default [
     like: '5,000,003'
   },
   {
-    profile_image: 'elon.jpg',
+    profile_image: 'https://pbs.twimg.com/profile_images/1295975423654977537/dHw9JcrK_400x400.jpg',
     name: 'Elon Musk',
     handle: '@teslaBoy',
     time: '1.4 hr',

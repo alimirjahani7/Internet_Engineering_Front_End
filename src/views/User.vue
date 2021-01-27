@@ -3,13 +3,23 @@
     <SideNav :tabs="getTabs"></SideNav>
     <div class="w-full md:w-1/2 h-full overflow-y-scroll">
       <div class="px-5 py-3 border-b border-lighter flex items-center justify-between">
-        <h1 class="text-xl font-bold">Home</h1>
+        <h1 class="text-xl font-bold">Profile</h1>
         <i class="far fa-star text-xl text-blue"></i>
       </div>
-      <NewTweet></NewTweet>
+      <div class="w-full p-4  hover:bg-lighter flex">
+        <div class="flex-none">
+          <img :src="getMe.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+        </div>
+        <div class="w-full p-2  flex">
+          {{ getMe.name }}
+        </div>
+      </div>
+      <div class="w-full p-2 flex">
+        {{ getMe.handle }}
+      </div>
       <div class="flex flex-col-reverse">
       </div>
-      <show-tweets :tweets="getTweets"/>
+      <show-tweets :tweets="getMe.tweets"/>
     </div>
     <Trending :trending="getTrends"></Trending>
   </div>
@@ -17,37 +27,30 @@
 
 <script>
 import SideNav from "../components/SideNav";
-import NewTweet from "../components/NewTweet";
 import Trending from "../components/Trending";
 
 import {mapGetters} from "vuex";
 import ShowTweets from "@/components/ShowTweets";
 
 export default {
-  name: 'home',
+  name: 'User',
   components: {
     ShowTweets,
     Trending,
-    NewTweet,
     SideNav,
   },
   data() {
     return {
-      id: 'home',
-      tweet: {content: ''}
+      s: this.$route.params.id,
+      id: 'user',
     }
   },
   computed: {
     ...mapGetters([
-      'getTweets', "getTrends", "getTabs"])
+      "getMe",
+      "getTrends",
+      "getTabs",
+      "getUser"])
   },
-  methods: {
-    addNewTweet() {
-      let newTweet = {
-        content: this.tweet.content
-      };
-      this.tweets.push(newTweet)
-    }
-  }
 }
 </script>

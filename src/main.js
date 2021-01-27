@@ -7,11 +7,10 @@ import './assets/styles/index.css';
 import store from './store'
 
 
-import router from '@/router/index'
+import router from '@/router'
 
 Vue.config.productionTip = true;
 
-Vue.use(router);
 
 new Vue({
     render: h => h(App),

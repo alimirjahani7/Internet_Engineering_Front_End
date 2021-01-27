@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-4 border-b hover:bg-lighter flex">
+  <div class="w-full p-4  hover:bg-lighter flex">
     <div class="flex-none mr-4">
       <img :src="`${tweet.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
     </div>
@@ -8,7 +8,7 @@
         <p class="font-semibold"> {{ tweet.name }} </p>
         <p class="text-sm text-dark ml-2"> {{ tweet.handle }} </p>
         <p class="text-sm text-dark ml-2"> {{ tweet.time }} </p>
-        <i class="fas fa-angle-down text-dark ml-auto"></i>
+        <i v-if="getMe.handle===tweet.handle" class="fas  text-dark ml-auto">Delete</i>
       </div>
       <p class="py-2">
         {{ tweet.content }}
@@ -35,9 +35,15 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "ShowTweet",
-  props: ["tweet"]
+  props: ["tweet"],
+  computed: {
+    ...mapGetters([
+      "getMe"])
+  },
 }
 </script>
 

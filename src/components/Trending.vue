@@ -46,7 +46,7 @@
 <script>
 export default {
   name: "Trending",
-  props: ['trending','friends']
+  props: ['trending']
 }
 </script>
 
