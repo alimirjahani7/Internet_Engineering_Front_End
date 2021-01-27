@@ -28,6 +28,7 @@ import Trending from "../components/Trending";
 
 import {mapGetters} from "vuex";
 import ShowTweets from "@/components/ShowTweets";
+// import axios from 'axios';
 
 export default {
   name: 'User',

@@ -7,17 +7,19 @@
           Log in to your account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
+        <error v-if="error" :error="error"/>
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required
+            <label for="username" class="sr-only">Email address</label>
+            <input id="username" name="username" type="text" autocomplete="username" required v-model="username"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-t-md sm:text-sm"
-                   placeholder="Email address">
+                   placeholder="username">
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required
+                   v-model="password"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-b-md sm:text-sm"
                    placeholder="Password">
           </div>
@@ -40,8 +42,8 @@
         </div>
 
         <div>
-          <button type="submit"
-                  class="group relative w-full justify-center py-2 px-4 text-sm font-medium rounded-full text-white bg-blue hover:bg-darkblue ">
+          <button
+              class="group relative w-full justify-center py-2 px-4 text-sm font-medium rounded-full text-white bg-blue hover:bg-darkblue ">
             Log in
           </button>
         </div>
@@ -50,3 +52,42 @@
   </div>
 
 </template>
+
+
+<script>
+import axios from 'axios'
+import Error from "../components/Error";
+
+export default {
+  name: 'Login',
+  components: {
+    Error
+  },
+  data() {
+    return {
+      username: '',
+      password: '',
+      error: '',
+    }
+  },
+  methods: {
+    async handleLogin() {
+      console.log("in handle login")
+      // this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
+      try {
+        const response = await axios.post('token/', {
+          username: this.username,
+          password: this.password
+        });
+        localStorage.setItem('access-token', response.data.access);
+        axios.defaults.headers.common ['Authorization'] = 'Bearer ' + localStorage.getItem('access-token')
+        const user = await axios.get('user/', );
+        this.$store.dispatch('setMe', user.data);
+        this.$router.push('/home')
+      } catch (e) {
+        this.error = 'Wrong user/password'
+      }
+    }
+  }
+}
+</script>
