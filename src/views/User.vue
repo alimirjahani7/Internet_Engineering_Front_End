@@ -8,7 +8,7 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img :src="getMe.image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="getMe.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
           {{ getMe.name }}
@@ -19,7 +19,7 @@
       </div>
       <div class="flex flex-col-reverse">
       </div>
-      <show-tweets :tweets="getMyTweets"/>
+      <show-tweets :tweets="getMe.tweets"/>
     </div>
     <Trending :trending="getTrends"></Trending>
   </div>
@@ -33,7 +33,7 @@ import {mapGetters} from "vuex";
 import ShowTweets from "@/components/ShowTweets";
 
 export default {
-  name: 'profile',
+  name: 'User',
   components: {
     ShowTweets,
     Trending,
@@ -41,12 +41,11 @@ export default {
   },
   data() {
     return {
-      id: 'profile',
+      id: 'user',
     }
   },
   computed: {
     ...mapGetters([
-      'getMyTweets',
       "getMe",
       "getTrends",
       "getTabs"])

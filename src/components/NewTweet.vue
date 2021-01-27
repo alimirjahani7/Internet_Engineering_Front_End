@@ -1,7 +1,7 @@
 <template>
   <div class="px-5 py-3 border-b-8 border-lighter flex">
     <div class="flex-none">
-      <img :src="getMe.image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+      <img :src="getMe.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
     </div>
     <form v-on:submit.prevent="addNewTweet" class="w-full px-4 relative">
       <textarea v-model="tweet.content" placeholder="What's up?" class="mt-3 pb-3 w-full focus:outline-none"/>
@@ -40,7 +40,7 @@ export default {
     ]),
     addNewTweet() {
       let newTweet = {
-        profile_image: this.getMe.image,
+        profile_image: this.getMe.profile_image,
         name: this.getMe.name,
         handle: this.getMe.handle,
         time: 'now',

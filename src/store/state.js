@@ -5,9 +5,7 @@ import tabs from "@/data/hardCodes/tabs";
 
 export default {
     tweets: tweets,
-    myTweets: tweets,
     me: me,
     trends: trends,
     tabs: tabs
-
 }
