@@ -79,15 +79,14 @@ export default {
           username: this.username,
           password: this.password
         });
-
-        localStorage.setItem('token', response.data.token);
-        // localStorage.setItem('username', response.data.username);
-        this.$store.dispatch('setMe', response.data.user);
+        localStorage.setItem('access-token', response.data.access);
+        axios.defaults.headers.common ['Authorization'] = 'Bearer ' + localStorage.getItem('access-token')
+        const user = await axios.get('user/', );
+        this.$store.dispatch('setMe', user.data);
         this.$router.push('/home')
       } catch (e) {
-        this.error = 'Invalid password or user name'
+        this.error = 'Wrong user/password'
       }
-
     }
   }
 }

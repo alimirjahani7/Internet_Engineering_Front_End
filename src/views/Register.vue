@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     async handleRegister() {
+      delete axios.defaults.headers.common['Authorization']
       const response =
       await axios.post('register/', {
         email: this.email,
