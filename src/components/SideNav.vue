@@ -45,6 +45,7 @@
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Add an existing account
         </button>
+
         <button @click="dropdown = false; handleLogOut();"
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Log out @{{ getMe.username }}

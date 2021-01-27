@@ -1,9 +1,9 @@
 <template>
-  <div id="home" class="flex container h-screen w-full">
+  <div id="home" class="flex container h-screen w-full ">
     <SideNav :tabs="getTabs"></SideNav>
-    <div class="w-full md:w-1/2 h-full overflow-y-scroll">
+    <div class="w-full md:w-1/2 h-full overflow-y-scroll ">
       <div class="px-5 py-3 border-b border-lighter flex items-center justify-between">
-        <h1 class="text-xl font-bold">Profile</h1>
+        <h1 class="text-xl font-bold"> {{ title }} </h1>
         <i class="far fa-star text-xl text-blue"></i>
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
@@ -14,10 +14,7 @@
           {{ getUser(username).name }}
         </div>
       </div>
-      <div class="w-full p-2 flex">
-        {{ getUser(username).username }}
-      </div>
-      <div class="flex flex-col-reverse">
+      <div class="flex flex-col-reverse border-b">
       </div>
       <show-tweets :tweets="getUser(username).tweets"/>
     </div>
@@ -35,7 +32,7 @@ import ShowTweets from "@/components/ShowTweets";
 
 export default {
   name: 'User',
-  props: ['username'],
+  props: ['username','title'],
   components: {
     ShowTweets,
     Trending,
