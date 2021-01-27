@@ -1,5 +1,11 @@
-import hardCodeTweets from "@/data/hardCodeTweets";
+import tweets from "@/data/hardCodes/tweets";
+import me from "@/data/hardCodes/me";
+import trends from "@/data/hardCodes/trends";
 
 export default {
-    tweets: hardCodeTweets
+    tweets: tweets,
+    myTweets: tweets,
+    me: me,
+    trends: trends
+
 }

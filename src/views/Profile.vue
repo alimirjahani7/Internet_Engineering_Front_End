@@ -3,32 +3,40 @@
     <SideNav :tabs="tabs"></SideNav>
     <div class="w-full md:w-1/2 h-full overflow-y-scroll">
       <div class="px-5 py-3 border-b border-lighter flex items-center justify-between">
-        <h1 class="text-xl font-bold">Home</h1>
+        <h1 class="text-xl font-bold">Profile</h1>
         <i class="far fa-star text-xl text-blue"></i>
       </div>
-      <NewTweet></NewTweet>
+      <div class="w-full p-4  hover:bg-lighter flex">
+        <div class="flex-none">
+          <img src="profile.png" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+        </div>
+        <div class="w-full p-2  flex">
+          {{ getMe.name }}
+        </div>
+      </div>
+      <div class="w-full p-2 flex">
+        {{ getMe.handle }}
+      </div>
       <div class="flex flex-col-reverse">
       </div>
-      <show-tweets :tweets="getTweets"/>
+      <show-tweets :tweets="getMyTweets"/>
     </div>
-    <Trending :trending="getTrends" :friends="friends"></Trending>
+    <Trending :trending="getTrends" ></Trending>
   </div>
 </template>
 
 <script>
 import SideNav from "../components/SideNav";
-import NewTweet from "../components/NewTweet";
 import Trending from "../components/Trending";
 
 import {mapGetters} from "vuex";
 import ShowTweets from "@/components/ShowTweets";
 
 export default {
-  name: 'home',
+  name: 'profile',
   components: {
     ShowTweets,
     Trending,
-    NewTweet,
     SideNav,
   },
   data() {
@@ -45,17 +53,14 @@ export default {
       ],
       id: 'home',
       dropdown: false,
-      friends: [
-        {src: 'elon.jpg', name: 'Elon Musk', handle: '@teslaBoy'},
-        {src: 'monk.jpg', name: 'Adrian Monk', handle: '@detective:)'},
-        {src: 'kevin.jpg', name: 'Kevin Hart', handle: '@miniRock'}
-      ],
       tweet: {content: ''}
     }
   },
   computed: {
     ...mapGetters([
-      'getTweets',"getTrends"])
+      'getMyTweets',
+      "getMe",
+      "getTrends"])
   },
   methods: {
     addNewTweet() {
