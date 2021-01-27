@@ -11,9 +11,15 @@
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="name" class="sr-only">name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required v-model="full_name"
+            <input id="name" name="name" type="text" autocomplete="name" required v-model="first_name"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-t-md sm:text-sm"
-                   placeholder="Full Name">
+                   placeholder="First Name">
+          </div>
+          <div>
+            <label for="fname" class="sr-only">username</label>
+            <input id="fname" name="fname" type="text" autocomplete="fname" required v-model="last_name"
+                   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark sm:text-sm"
+                   placeholder="Last Name">
           </div>
           <div>
             <label for="username" class="sr-only">username</label>
@@ -36,7 +42,7 @@
           </div>
           <div>
             <label for="cpassword" class="sr-only">Confirm Password</label>
-            <input id="cpassword" name="cpassword" type="cpassword" required v-model="confirm_password"
+            <input id="cpassword" name="cpassword" type="password" required v-model="confirm_password"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-b-md sm:text-sm"
                    placeholder="Confirm Password">
           </div>
@@ -62,21 +68,24 @@ export default {
       email: '',
       password: '',
       username: '',
-      full_name: '',
+      first_name: '',
+      last_name: '',
       confirm_password: ''
     }
   },
   methods: {
     async handleRegister() {
-      // const response =
+      const response =
       await axios.post('register', {
         email: this.email,
         password: this.password,
-        full_name: this.full_name,
+        first_name: this.first_name,
+        last_name: this.last_name,
         username: this.username
       })
 
-      // console.log(response)
+      console.log(response);
+
       this.$router.push("/login");
 
     }

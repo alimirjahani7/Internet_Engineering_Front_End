@@ -11,10 +11,10 @@
        <error v-if="error" :error="error" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
-            <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required v-model="email"
+            <label for="username" class="sr-only">Email address</label>
+            <input id="username" name="username" type="text" autocomplete="username" required v-model="username"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-t-md sm:text-sm"
-                   placeholder="Email address">
+                   placeholder="username">
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
@@ -55,7 +55,7 @@
 
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import Error from "../components/Error";
 
 export default {
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      email: '',
+      username: '',
       password: '',
       error: ''
 
@@ -73,24 +73,24 @@ export default {
   },
   methods: {
     async handleLogin() {
-      // console.log("in handle login")
+      console.log("in handle login")
       // this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
       try {
-        // const response = await axios.post('login', {
-        //   email: this.email,
-        //   password: this.password
-        // });
+        const response = await axios.post('token', {
+          username: this.username,
+          password: this.password
+        });
 
-        const response = {
-          data: {
-            token: "test-token",
-            user: {
-              username: "username",
+        // const response = {
+        //   data: {
+        //     token: "test-token",
+        //     user: {
+        //       username: "username",
+        //
+        //     }
+        //   }
 
-            }
-          }
-
-        }
+        // }
 
         localStorage.setItem('token', response.data.token);
         // localStorage.setItem('username', response.data.username);
