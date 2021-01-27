@@ -4,7 +4,8 @@ import Home from '@/views/Home.vue'
 import Main from '@/views/Main.vue'
 import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
-import User from "@/views/User";
+import User from "@/views/UserPage";
+import Profile from "@/views/Profile";
 
 Vue.use(Router)
 
@@ -33,9 +34,14 @@ export default new Router({
             component: Login
         },
         {
-            path: '/user/:handle',
+            path: '/user/:username',
             name: 'user',
             component: User
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile
         }
     ]
 })
