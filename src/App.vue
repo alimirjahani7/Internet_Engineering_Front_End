@@ -11,14 +11,21 @@
 
 <script>
 
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: 'app',
   async created() {
-    const response = await axios.get('user');
-    console.log(response);
-    //  this.user = response.data;
+    // const response = await axios.get('user');
+    // console.log(response);
+    const response = {
+      data: {
+        token: "token",
+        user: {
+          username: "username"
+        }
+      }
+    }
     this.$store.dispatch('setMe', response.data.user)
   },
 }

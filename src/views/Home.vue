@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getTweets', "getTrends", "getTabs"])
+      'getTweets', "getTrends", "getTabs", "getMe"])
   },
   methods: {
     addNewTweet() {

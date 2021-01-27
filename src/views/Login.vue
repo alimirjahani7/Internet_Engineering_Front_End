@@ -8,6 +8,7 @@
         </h2>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
+       <error v-if="error" :error="error" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="email-address" class="sr-only">Email address</label>
@@ -21,7 +22,6 @@
                    v-model="password"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-b-md sm:text-sm"
                    placeholder="Password">
-            <div v-if="passwordError" class="text-dark">{{ passwordError }}</div>
           </div>
         </div>
 
@@ -55,31 +55,51 @@
 
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import Error from "../components/Error";
 
 export default {
   name: 'Login',
+  components: {
+    Error
+  },
   data() {
     return {
       email: '',
       password: '',
-      passwordError: ''
+      error: ''
 
     }
   },
   methods: {
     async handleLogin() {
-      console.log("in handle login")
-      this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
-      const response = await axios.post('login', {
-        email: this.email,
-        password: this.password
-      });
+      // console.log("in handle login")
+      // this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
+      try {
+        // const response = await axios.post('login', {
+        //   email: this.email,
+        //   password: this.password
+        // });
 
-      localStorage.setItem('token', response.data.token);
-      // localStorage.setItem('username', response.data.username);
-      this.$store.dispatch('setMe', response.data.user);
-      this.$router.push('/home')
+        const response = {
+          data: {
+            token: "test-token",
+            user: {
+              username: "username",
+
+            }
+          }
+
+        }
+
+        localStorage.setItem('token', response.data.token);
+        // localStorage.setItem('username', response.data.username);
+        this.$store.dispatch('setMe', response.data.user);
+        this.$router.push('/home')
+      } catch (e) {
+        this.error = 'Invalid password or user name'
+      }
+
     }
   }
 }

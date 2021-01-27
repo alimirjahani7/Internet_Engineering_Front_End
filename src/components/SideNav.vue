@@ -72,6 +72,7 @@ export default {
   methods: {
     handleLogOut() {
       localStorage.removeItem('token')
+      this.$store.dispatch('setMe', null)
       this.$router.push('/');
     }
   }
