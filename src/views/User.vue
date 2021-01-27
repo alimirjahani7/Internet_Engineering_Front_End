@@ -41,6 +41,7 @@ export default {
   },
   data() {
     return {
+      s: this.$route.params.id,
       id: 'user',
     }
   },
@@ -48,7 +49,8 @@ export default {
     ...mapGetters([
       "getMe",
       "getTrends",
-      "getTabs"])
+      "getTabs",
+      "getUser"])
   },
 }
 </script>

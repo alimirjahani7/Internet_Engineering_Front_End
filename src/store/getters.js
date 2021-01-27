@@ -5,10 +5,14 @@ export default {
     getMe: (state) => {
         return state.me;
     },
-    getTrends:(state) => {
+    getTrends: (state) => {
         return state.trends;
     },
-    getTabs:(state) => {
+    getTabs: (state) => {
         return state.tabs;
     },
+    getUser: (state) => (id) => {
+        console.log(id)
+        return state.me
+    }
 };

@@ -1,10 +1,10 @@
 export default [
     {icon: 'fas fa-home', title: 'Home', id: 'home'},
-    {icon: 'fas fa-hashtag', title: 'Explore', id: 'explore'},
+    {icon: 'fas fa-hashtag', title: 'Explore'},
     {icon: 'far fa-bell', title: 'Notifications', id: 'notifications'},
-    {icon: 'far fa-envelope', title: 'Messages', id: 'messages'},
-    {icon: 'far fa-bookmark', title: 'Bookmarks', id: 'bookmarks'},
-    {icon: 'fas fa-clipboard-list', title: 'Lists', id: 'lists'},
+    {icon: 'far fa-envelope', title: 'Messages'},
+    {icon: 'far fa-bookmark', title: 'Bookmarks'},
+    {icon: 'fas fa-clipboard-list', title: 'Lists'},
     {icon: 'far fa-user', title: 'Profile', id: 'profile'},
-    {icon: 'fas fa-ellipsis-h', title: 'More', id: 'more'}
+    {icon: 'fas fa-ellipsis-h', title: 'More'}
 ]
