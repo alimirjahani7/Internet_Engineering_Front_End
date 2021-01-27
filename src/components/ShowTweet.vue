@@ -8,7 +8,7 @@
         <p class="font-semibold"> {{ tweet.name }} </p>
         <p class="text-sm text-dark ml-2"> {{ tweet.handle }} </p>
         <p class="text-sm text-dark ml-2"> {{ tweet.time }} </p>
-        <i class="fas  text-dark ml-auto">Delete</i>
+        <i v-if="getMe.handle===tweet.handle" class="fas  text-dark ml-auto">Delete</i>
       </div>
       <p class="py-2">
         {{ tweet.content }}
@@ -35,9 +35,15 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "ShowTweet",
-  props: ["tweet"]
+  props: ["tweet"],
+  computed: {
+    ...mapGetters([
+      "getMe"])
+  },
 }
 </script>
 

@@ -1,5 +1,6 @@
 export default {
     src: 'elon.jpg',
-    name: 'Elon Musk',
-    handle: '@teslaBoy'
+    name: 'Steph Dietz',
+    handle: '@SaaSyEth',
+    image: 'profile.png'
 }

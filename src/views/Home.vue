@@ -34,8 +34,6 @@ export default {
   data() {
     return {
       id: 'home',
-      dropdown: false,
-
       tweet: {content: ''}
     }
   },

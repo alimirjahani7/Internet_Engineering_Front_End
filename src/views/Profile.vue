@@ -8,7 +8,7 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img src="profile.png" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="getMe.image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
           {{ getMe.name }}
@@ -41,9 +41,7 @@ export default {
   },
   data() {
     return {
-      id: 'home',
-      dropdown: false,
-      tweet: {content: ''}
+      id: 'profile',
     }
   },
   computed: {
@@ -53,13 +51,5 @@ export default {
       "getTrends",
       "getTabs"])
   },
-  methods: {
-    addNewTweet() {
-      let newTweet = {
-        content: this.tweet.content
-      };
-      this.tweets.push(newTweet)
-    }
-  }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="px-5 py-3 border-b-8 border-lighter flex">
     <div class="flex-none">
-      <img src="profile.png" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+      <img :src="getMe.image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
     </div>
     <form v-on:submit.prevent="addNewTweet" class="w-full px-4 relative">
       <textarea v-model="tweet.content" placeholder="What's up?" class="mt-3 pb-3 w-full focus:outline-none"/>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "NewTweet",
@@ -30,15 +30,19 @@ export default {
       tweets: []
     }
   },
+  computed: {
+    ...mapGetters([
+      "getMe"])
+  },
   methods: {
     ...mapActions([
       'addTweet'
     ]),
     addNewTweet() {
       let newTweet = {
-        profile_image: 'elon.jpg',
-        name: 'Elon Musk',
-        handle: '@me',
+        profile_image: this.getMe.image,
+        name: this.getMe.name,
+        handle: this.getMe.handle,
         time: 'now',
         comments: '0',
         retweets: '0',
