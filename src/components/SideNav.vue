@@ -45,7 +45,7 @@
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Add an existing account
         </button>
-        <button @click="dropdown = false"
+        <button @click="dropdown = false; handleLogOut"
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Log out {{ getMe.handle }}
         </button>
@@ -69,6 +69,12 @@ export default {
     ...mapGetters([
       "getMe"])
   },
+  methods: {
+    handleLogOut() {
+      localStorage.removeItem('token')
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 

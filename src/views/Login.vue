@@ -58,6 +58,7 @@
 import axios from 'axios'
 
 export default {
+  name: 'Login',
   data() {
     return {
       email: '',
@@ -76,7 +77,9 @@ export default {
       });
 
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('username', response.data.username);
+      // localStorage.setItem('username', response.data.username);
+      this.$store.dispatch('setMe', response.data.user);
+      this.$router.push('/home')
     }
   }
 }
