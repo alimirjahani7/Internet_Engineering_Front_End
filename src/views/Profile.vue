@@ -1,5 +1,5 @@
 <template>
-  <User :username="getMe.username"></User>
+  <User :username="getMe.username" title="Profile"></User>
 </template>
 
 <script>

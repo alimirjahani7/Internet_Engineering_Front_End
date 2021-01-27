@@ -1,10 +1,6 @@
 <template>
   <div id='app'>
-<!--    <div id='nav'>-->
-<!--      <router-link to='/'>Home </router-link>-->
-<!--      <router-link to='/login'>login </router-link>-->
-<!--      <router-link to='/profile'>profile </router-link>-->
-<!--    </div>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />-->
     <router-view />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <User :username="$route.params.username"></User>
+  <User :username="$route.params.username" :title="$route.params.username"></User>
 </template>
 
 <script>

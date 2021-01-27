@@ -45,10 +45,10 @@
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Add an existing account
         </button>
-        <button @click="dropdown = false"
+        <router-link to="/"
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Log out @{{ getMe.username }}
-        </button>
+        </router-link>
       </div>
     </div>
   </div>

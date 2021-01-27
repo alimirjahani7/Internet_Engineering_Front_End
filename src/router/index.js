@@ -6,6 +6,7 @@ import Login from '@/views/Login.vue'
 import Register from '@/views/Register.vue'
 import User from "@/views/UserPage";
 import Profile from "@/views/Profile";
+import Notifications from "@/views/Notifications"
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
             path: '/profile',
             name: 'profile',
             component: Profile
+        },
+        {
+            path: '/notifications',
+            name: 'notifications',
+            component: Notifications
         }
     ]
 })
