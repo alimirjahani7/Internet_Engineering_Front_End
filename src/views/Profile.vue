@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="flex container h-screen w-full">
-    <SideNav :tabs="tabs"></SideNav>
+    <SideNav :tabs="getTabs"></SideNav>
     <div class="w-full md:w-1/2 h-full overflow-y-scroll">
       <div class="px-5 py-3 border-b border-lighter flex items-center justify-between">
         <h1 class="text-xl font-bold">Profile</h1>
@@ -21,7 +21,7 @@
       </div>
       <show-tweets :tweets="getMyTweets"/>
     </div>
-    <Trending :trending="getTrends" ></Trending>
+    <Trending :trending="getTrends"></Trending>
   </div>
 </template>
 
@@ -41,16 +41,6 @@ export default {
   },
   data() {
     return {
-      tabs: [
-        {icon: 'fas fa-home', title: 'Home', id: 'home'},
-        {icon: 'fas fa-hashtag', title: 'Explore', id: 'explore'},
-        {icon: 'far fa-bell', title: 'Notifications', id: 'notifications'},
-        {icon: 'far fa-envelope', title: 'Messages', id: 'messages'},
-        {icon: 'far fa-bookmark', title: 'Bookmarks', id: 'bookmarks'},
-        {icon: 'fas fa-clipboard-list', title: 'Lists', id: 'lists'},
-        {icon: 'far fa-user', title: 'Profile', id: 'profile'},
-        {icon: 'fas fa-ellipsis-h', title: 'More', id: 'more'}
-      ],
       id: 'home',
       dropdown: false,
       tweet: {content: ''}
@@ -60,7 +50,8 @@ export default {
     ...mapGetters([
       'getMyTweets',
       "getMe",
-      "getTrends"])
+      "getTrends",
+      "getTabs"])
   },
   methods: {
     addNewTweet() {

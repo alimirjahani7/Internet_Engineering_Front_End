@@ -11,4 +11,7 @@ export default {
     getTrends:(state) => {
         return state.trends;
     },
+    getTabs:(state) => {
+        return state.tabs;
+    },
 };
