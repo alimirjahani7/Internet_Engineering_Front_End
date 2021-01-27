@@ -8,7 +8,7 @@
         </h2>
       </div>
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
-       <error v-if="error" :error="error" />
+        <error v-if="error" :error="error"/>
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="username" class="sr-only">Email address</label>
@@ -67,8 +67,7 @@ export default {
     return {
       username: '',
       password: '',
-      error: ''
-
+      error: '',
     }
   },
   methods: {
@@ -76,21 +75,10 @@ export default {
       console.log("in handle login")
       // this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
       try {
-        const response = await axios.post('token', {
+        const response = await axios.post('token/', {
           username: this.username,
           password: this.password
         });
-
-        // const response = {
-        //   data: {
-        //     token: "test-token",
-        //     user: {
-        //       username: "username",
-        //
-        //     }
-        //   }
-
-        // }
 
         localStorage.setItem('token', response.data.token);
         // localStorage.setItem('username', response.data.username);

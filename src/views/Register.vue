@@ -76,7 +76,7 @@ export default {
   methods: {
     async handleRegister() {
       const response =
-      await axios.post('register', {
+      await axios.post('register/', {
         email: this.email,
         password: this.password,
         first_name: this.first_name,
