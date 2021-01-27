@@ -7,42 +7,43 @@
           Sign up for a twitter account
         </h2>
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
             <label for="name" class="sr-only">name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required
+            <input id="name" name="name" type="text" autocomplete="name" required v-model="full_name"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-t-md sm:text-sm"
                    placeholder="Full Name">
           </div>
           <div>
             <label for="username" class="sr-only">username</label>
-            <input id="username" name="username" type="text" autocomplete="username" required
+            <input id="username" name="username" type="text" autocomplete="username" required v-model="username"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark sm:text-sm"
                    placeholder="username">
           </div>
           <div>
             <label for="email-address" class="sr-only">Email address</label>
-            <input id="email-address" name="email" type="email" autocomplete="email" required
+            <input id="email-address" name="email" type="email" autocomplete="email" required v-model="email"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark sm:text-sm"
                    placeholder="Email address">
           </div>
           <div>
             <label for="password" class="sr-only">Password</label>
             <input id="password" name="password" type="password" autocomplete="current-password" required
+                   v-model="password"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark sm:text-sm"
                    placeholder="Password">
           </div>
           <div>
             <label for="cpassword" class="sr-only">Confirm Password</label>
-            <input id="cpassword" name="cpassword" type="cpassword" required
+            <input id="cpassword" name="cpassword" type="cpassword" required v-model="confirm_password"
                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-dark placeholder-dark rounded-b-md sm:text-sm"
                    placeholder="Confirm Password">
           </div>
         </div>
         <div>
-          <button type="submit"
-                  class="group relative w-full justify-center py-2 px-4  text-sm font-medium rounded-full text-white bg-blue hover:bg-darkblue ">
+          <button
+              class="group relative w-full justify-center py-2 px-4  text-sm font-medium rounded-full text-white bg-blue hover:bg-darkblue ">
             Sign up
           </button>
         </div>
@@ -50,3 +51,37 @@
     </div>
   </div>
 </template>
+
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      username: '',
+      full_name: '',
+      confirm_password: ''
+    }
+  },
+  methods: {
+    async handleRegister() {
+      // const response =
+      await axios.post('register', {
+        email: this.email,
+        password: this.password,
+        full_name: this.full_name,
+        username: this.username
+      })
+
+      // console.log(response)
+      this.$router.push("/login");
+
+    }
+  }
+}
+
+
+</script>
