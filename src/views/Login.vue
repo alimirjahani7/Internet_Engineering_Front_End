@@ -72,7 +72,6 @@ export default {
   },
   methods: {
     async handleLogin() {
-      console.log("in handle login")
       // this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
       try {
         const response = await axios.post('token/', {
