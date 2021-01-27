@@ -4,12 +4,15 @@
       <img :src="`${tweet.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
     </div>
     <div class="w-full">
-      <div class="flex items-center w-full">
-        <p class="font-semibold"> {{ tweet.name }} </p>
-        <p class="text-sm text-dark ml-2"> {{ tweet.handle }} </p>
-        <p class="text-sm text-dark ml-2"> {{ tweet.time }} </p>
-        <i v-if="getMe.handle===tweet.handle" class="fas  text-dark ml-auto">Delete</i>
-      </div>
+      <router-link :to="'/user/'+tweet.username">
+        <div class="flex items-center w-full">
+          <p class="font-semibold"> {{ tweet.name }} </p>
+          <p class="text-sm text-dark ml-2"> @{{ tweet.username }} </p>
+          <p class="text-sm text-dark ml-2"> {{ tweet.time }} </p>
+          <i v-if="getMe.username===tweet.username" class="fas  text-dark ml-auto">Delete</i>
+        </div>
+
+      </router-link>
       <p class="py-2">
         {{ tweet.content }}
       </p>

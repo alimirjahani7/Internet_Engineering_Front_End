@@ -8,18 +8,18 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img :src="getMe.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="getUser(username).profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
-          {{ getMe.name }}
+          {{ getUser(username).name }}
         </div>
       </div>
       <div class="w-full p-2 flex">
-        {{ getMe.handle }}
+        {{ getUser(username).username }}
       </div>
       <div class="flex flex-col-reverse">
       </div>
-      <show-tweets :tweets="getMe.tweets"/>
+      <show-tweets :tweets="getUser(username).tweets"/>
     </div>
     <Trending :trending="getTrends"></Trending>
   </div>
@@ -34,6 +34,7 @@ import ShowTweets from "@/components/ShowTweets";
 
 export default {
   name: 'User',
+  props: ['username'],
   components: {
     ShowTweets,
     Trending,
@@ -47,7 +48,6 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getMe",
       "getTrends",
       "getTabs",
       "getUser"])

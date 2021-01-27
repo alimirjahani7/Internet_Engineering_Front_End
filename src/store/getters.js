@@ -11,8 +11,9 @@ export default {
     getTabs: (state) => {
         return state.tabs;
     },
-    getUser: (state) => (id) => {
-        console.log(id)
-        return state.me
+    getUser: (state) => (username) => {
+        let user = state.me
+        user['username'] = username
+        return user
     }
 };

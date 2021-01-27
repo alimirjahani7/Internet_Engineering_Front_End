@@ -42,7 +42,7 @@ export default {
       let newTweet = {
         profile_image: this.getMe.profile_image,
         name: this.getMe.name,
-        handle: this.getMe.handle,
+        username: this.getMe.username,
         time: 'now',
         comments: '0',
         retweets: '0',

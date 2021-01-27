@@ -30,7 +30,7 @@
 <!--        <img :src="`${ friend.src }`" class="w-12 h-12 rounded-full border border-lighter"/>-->
 <!--        <div class="hidden lg:block ml-4">-->
 <!--          <p class="text-sm font-bold leading-tight"> {{ friend.name }} </p>-->
-<!--          <p class="text-sm leading-tight"> {{ friend.handle }} </p>-->
+<!--          <p class="text-sm leading-tight"> {{ friend.username }} </p>-->
 <!--        </div>-->
 <!--        <button class="ml-auto text-sm text-blue py-1 px-4 rounded-full border-2 border-blue">-->
 <!--          Follow-->
