@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <span v-if="!!tweet.retweet_username"> {{ tweet.retweet_username }}  retweeted</span>
+  <div>
+    <!--    <span v-if="!!tweet.retweet_username"> {{ tweet.retweet_username }}  retweeted</span>-->
     <div class="w-full p-2  hover:bg-lighter flex ">
       <div class="flex-none mr-2">
         <img :src="`${tweet.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
@@ -8,28 +8,26 @@
       <div class="w-full">
         <router-link :to="'/user/'+tweet.username">
           <div class="flex items-center w-full">
-            <p class="font-semibold"> {{ tweet.name }} </p>
-            <p class="text-sm text-dark ml-2"> @{{ tweet.username }} </p>
-            <p class="text-sm text-dark ml-2"> {{ tweet.time }} </p>
-            <i v-if="getMe.username===tweet.username" class="fas  text-dark ml-auto">Delete</i>
+            <p class="font-semibold"> {{ tweet_user.first_name }} </p>
+            <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
+            <p class="text-sm text-dark ml-2"> {{ tweet.date.slice(0, 10) }} </p>
+            <i v-if="$store.state.me.id===tweet.id" class="fas  text-dark ml-auto">Delete</i>
           </div>
 
         </router-link>
         <p class="py-2">
           {{ tweet.text }}
+          {{ getMe.id }}
         </p>
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center text-sm text-dark">
-            <i class="far fa-comment mr-3"></i>
-            <p> {{ tweet.comments }} </p>
-          </div>
-          <div class="flex items-center text-sm text-dark">
             <i class="fas fa-retweet mr-3"></i>
-            <p> {{ tweet.retweets }} </p>
+            0
+            <!--            <p> {{ tweet.retweets }} </p>-->
           </div>
           <div class="flex items-center text-sm text-dark">
             <i class="fas fa-heart mr-3"></i>
-            <p> {{ tweet.like }} </p>
+            <p v-if="!!tweet.likes"> {{ tweet.likes.length }} </p>
           </div>
           <div class="flex items-center text-sm text-dark">
             <i class="fas fa-share-square mr-3"></i>
@@ -42,14 +40,30 @@
 
 <script>
 import {mapGetters} from "vuex";
+import axios from "axios";
 
 export default {
   name: "ShowTweet",
   props: ["tweet"],
   computed: {
     ...mapGetters([
-      "getMe"])
+      "getMe"]),
   },
+  data() {
+    return {
+      tweet_user: {}
+    };
+  },
+  mounted() {
+    if (this.tweet.user_id!==undefined) {
+      let url="user/?id=" + this.tweet.user_id + ""
+      console.log(url);
+      axios.get(url)
+          .then(response => {
+            this.tweet_user = response.data
+          })
+    }
+  }
 }
 </script>
 

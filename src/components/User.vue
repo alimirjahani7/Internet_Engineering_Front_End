@@ -46,7 +46,6 @@ export default {
   },
   computed: {
     getUser() {
-      console.log(this.$store.state.me);
       return this.$store.state.me
     },
     ...mapGetters([
