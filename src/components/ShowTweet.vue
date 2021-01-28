@@ -6,7 +6,7 @@
         <img :src="`${tweet.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
       </div>
       <div class="w-full">
-        <router-link :to="'/user/'+tweet.username">
+        <router-link :to="'/user/'+tweet_user.id">
           <div class="flex items-center w-full">
             <p class="font-semibold"> {{ tweet_user.first_name }} </p>
             <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
