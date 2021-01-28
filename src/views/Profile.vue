@@ -11,7 +11,7 @@
           <img :src="getUser.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
-          {{ getUser.first_name }}
+          {{ getUser.first_name }} {{ getUser.last_name }}
         </div>
         <div v-if="!!getUser.followers" class="w-full p-2  flex">
           followers {{ getUser.followers.length }}

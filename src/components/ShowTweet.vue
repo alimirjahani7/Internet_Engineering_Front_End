@@ -8,7 +8,7 @@
       <div class="w-full">
         <router-link :to="'/user/'+tweet_user.id">
           <div class="flex items-center w-full">
-            <p class="font-semibold"> {{ tweet_user.first_name }} </p>
+            <p class="font-semibold"> {{ tweet_user.first_name }}  {{ tweet_user.last_name }}</p>
             <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
             <p class="text-sm text-dark ml-2"> {{ tweet.date.slice(0, 10) }} </p>
             <i v-if="$store.state.me.id===tweet.user_id" class="fas  text-dark ml-auto">Delete</i>

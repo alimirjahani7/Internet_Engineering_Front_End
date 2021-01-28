@@ -24,7 +24,7 @@
               class="flex items-center w-full hover:bg-lightblue rounded-full p-2 focus:outline-none">
         <img :src="getMe.profile_image" class="w-10 h-10 rounded-full border border-lighter"/>
         <div class="hidden lg:block ml-4">
-          <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} </p>
+          <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} {{ getMe.last_name }}</p>
           <p class="text-sm leading-tight"> @{{ getMe.username }} </p>
         </div>
         <i class="hidden lg:block fas fa-angle-down ml-auto text-lg"></i>
@@ -35,7 +35,7 @@
           <button class="p-3 flex items-center w-full hover:bg-lightest p-2 focus:outline-none">
             <img :src="getMe.profile_image" class="w-10 h-10 rounded-full border border-lighter"/>
             <div class="ml-4">
-              <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} </p>
+              <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} {{ getMe.last_name }}</p>
               <p class="text-sm leading-tight">@{{ getMe.username }} </p>
             </div>
             <i class="fas fa-check ml-auto test-blue"></i>
