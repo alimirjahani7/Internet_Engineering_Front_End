@@ -100,23 +100,38 @@ export default {
     },
     handleEdit() {
       // console.log("in handle edit")
-      const imageForm = new FormData();
-      imageForm.append('image', this.profile_image);
-      try {
-        axios.post('upload_profile/', imageForm).then(response => {
-          this.profile_image_url = response.data.image;
-          axios.patch('user/', {
-            username: this.username,
-            first_name: this.first_name,
-            last_name: this.last_name,
-            email: this.email,
-            profile_image_url: this.profile_image_url
+      if (this.profile_image){
+        const imageForm = new FormData();
+        imageForm.append('image', this.profile_image);
+        try {
+          axios.post('upload_profile/', imageForm).then(response => {
+            this.profile_image_url = response.data.image;
+            this.updateUser(true);
           })
-          this.$router.push("/profile");
-        })
-      } catch (e) {
-        console.log(e)
+        } catch (e) {
+          console.log(e)
+        }
+      } else {
+        try {
+          this.updateUser(false);
+        } catch (e) {
+          console.log(e)
+        }
       }
+
+    },
+
+    updateUser(withImage) {
+      let data = {
+        username: this.username,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+      }
+      if (withImage)
+        data.profile_image_url = this.profile_image_url;
+      axios.patch('user/', data)
+      this.$router.push("/profile");
     },
     Preview() {
       if (!this.profile_image)
