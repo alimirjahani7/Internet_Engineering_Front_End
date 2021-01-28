@@ -15,8 +15,9 @@
           </div>
 
         </router-link>
-<!--        <img :src="`${base_url}${getUser.profile_image_url}`"-->
-<!--             class="flex-none w-12 h-12 rounded-full border border-lighter"/>-->
+        <img v-if="image_address" :src='`${image_address}`' class="h-20 w-20 flex-none"/>
+        <!--        <img :src="`${base_url}${getUser.profile_image_url}`"-->
+        <!--             class="flex-none w-12 h-12 rounded-full border border-lighter"/>-->
         <p class="py-2">
           {{ tweet.text }}
         </p>
@@ -71,6 +72,7 @@ export default {
       tweet_user: {},
       liked: false,
       base_url: 'http://127.0.0.1:8000',
+      image_address: ''
     };
   },
   mounted() {
@@ -87,6 +89,13 @@ export default {
       axios.get(url)
           .then(response => {
             this.tweet_user = response.data
+            if (this.tweet.image) {
+              axios.get("/image/" + this.tweet.image).then(
+                  res => {
+                    this.image_address = res.data.image
+                  }
+              )
+            }
           })
     }
   },

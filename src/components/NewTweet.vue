@@ -8,8 +8,7 @@
 
     <form v-on:submit.prevent="addNewTweet" class="w-full px-4 relative"
           :class="{'--exceeded': tweetCharCount > limit}">
-      <div v-if="shown_pic" :style="{'background-image': `url(${shown_pic})`}"
-           class="h-20 w-20 flex-none"></div>
+      <img v-if="shown_pic" :src='`${shown_pic}`' class="h-20 w-20 flex-none"/>
       <textarea v-model="tweet.content" placeholder="What's up?" class="mt-3 pb-3 w-full focus:outline-none"/>
       <div class="flex items-center">
         <div>
@@ -83,7 +82,7 @@ export default {
 
       if (this.tweetCharCount > this.limit)
         return
-      if (this.tweetCharCount == 0 && !this.tweet.image)
+      if (this.tweetCharCount === 0 && !this.tweet.image)
         return
       if (this.tweet.image){
         const imageForm = new FormData();
