@@ -10,5 +10,10 @@ export default {
         axios.get('user/').then(response => {
             commit('setMe', response.data)
         })
+    },
+    setAllTweets: ({commit}) => {
+        axios.get('tweet/').then(response => {
+            commit('setTweets', response.data)
+        })
     }
 }

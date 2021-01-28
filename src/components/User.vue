@@ -40,7 +40,6 @@ export default {
   },
   data() {
     return {
-      s: this.$route.params.id,
       id: 'user',
     }
   },

@@ -37,8 +37,16 @@ export default {
     }
   },
   computed: {
+    getTweets() {
+      return this.$store.state.tweets
+    },
     ...mapGetters([
       'getTweets', "getTrends", "getTabs", "getMe"])
   },
+  mounted() {
+    this.$store.dispatch("setAllTweets");
+  }
+
+
 }
 </script>

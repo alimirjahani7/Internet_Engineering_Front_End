@@ -1,7 +1,7 @@
 <template>
   <div class="px-5 py-3 border-b-8 border-lighter flex">
     <div class="flex-none">
-      <img :src="getMe.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+      <img :src="getUser.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
     </div>
     <form v-on:submit.prevent="addNewTweet" class="w-full px-4 relative">
       <textarea v-model="tweet.content" placeholder="What's up?" class="mt-3 pb-3 w-full focus:outline-none"/>
@@ -32,7 +32,12 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getMe"])
+      "getMe"]),
+    getUser() {
+      return this.$store.state.me
+    },
+    ...mapGetters([
+      "getTrends", "getTabs"])
   },
   methods: {
     ...mapActions([
@@ -44,6 +49,9 @@ export default {
       };
       this.addTweet(newTweet)
     }
+  },
+  mounted() {
+    this.$store.dispatch("setMe");
   }
 }
 </script>
