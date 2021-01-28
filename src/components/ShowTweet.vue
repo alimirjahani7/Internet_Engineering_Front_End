@@ -3,7 +3,7 @@
     <!--    <span v-if="!!tweet.retweet_username"> {{ tweet.retweet_username }}  retweeted</span>-->
     <div class="w-full p-2  hover:bg-lighter flex ">
       <div class="flex-none mr-2">
-        <img :src="`${tweet.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
+        <img :src="`${base_url}${tweet_user.profile_image_url}`" class="h-12 w-12 rounded-full flex-none"/>
       </div>
       <div class="w-full">
         <router-link :to="'/user/'+tweet_user.id">
@@ -11,7 +11,7 @@
             <p class="font-semibold"> {{ tweet_user.first_name }} {{ tweet_user.last_name }}</p>
             <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
             <p class="text-sm text-dark ml-2"> {{ tweet.date.slice(0, 10) }} </p>
-            <i v-if="$store.state.me.id===tweet.user_id" class="fas  text-dark ml-auto">Delete</i>
+            <i v-if="$store.state.me.id===tweet.user" class="fas  text-dark ml-auto">Delete</i>
           </div>
 
         </router-link>
@@ -68,20 +68,21 @@ export default {
   data() {
     return {
       tweet_user: {},
-      liked: false
+      liked: false,
+      base_url: 'http://127.0.0.1:8000',
     };
   },
   mounted() {
     this.liked = this.tweet.likes.reduce((acc, cv) => {
-          if (cv.user_id === this.$store.state.me.id) {
+          if (cv.user === this.$store.state.me.id) {
             return true
           }
           return acc
         }, false
     )
-    // this.setMe
-    if (this.tweet.user_id !== undefined) {
-      let url = "user/?id=" + this.tweet.user_id + ""
+    this.setMe
+    if (this.tweet.user !== undefined) {
+      let url = "user/?id=" + this.tweet.user + ""
       axios.get(url)
           .then(response => {
             this.tweet_user = response.data
