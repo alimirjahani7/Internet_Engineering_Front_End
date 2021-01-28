@@ -11,7 +11,7 @@
             <p class="font-semibold"> {{ tweet_user.first_name }} </p>
             <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
             <p class="text-sm text-dark ml-2"> {{ tweet.date.slice(0, 10) }} </p>
-            <i v-if="$store.state.me.id===tweet.id" class="fas  text-dark ml-auto">Delete</i>
+            <i v-if="$store.state.me.id===tweet.user_id" class="fas  text-dark ml-auto">Delete</i>
           </div>
 
         </router-link>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import axios from "axios";
 
 export default {
@@ -48,6 +48,17 @@ export default {
   computed: {
     ...mapGetters([
       "getMe"]),
+    ...mapActions([
+      "setMe"
+    ]),
+    getMeUser() {
+      return this.$store.state.me
+    },
+    ...mapGetters([
+      "getTrends", "getTabs"]),
+    ...mapActions([
+      "setMe"
+    ]),
   },
   data() {
     return {
@@ -55,18 +66,17 @@ export default {
     };
   },
   mounted() {
-    if (this.tweet.user_id!==undefined) {
-      let url="user/?id=" + this.tweet.user_id + ""
+    // this.setMe
+    if (this.tweet.user_id !== undefined) {
+      let url = "user/?id=" + this.tweet.user_id + ""
       console.log(url);
       axios.get(url)
           .then(response => {
             this.tweet_user = response.data
           })
     }
-  }
+  },
+
 }
 </script>
 
-<style scoped>
-
-</style>

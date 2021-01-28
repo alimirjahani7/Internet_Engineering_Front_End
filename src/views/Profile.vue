@@ -13,6 +13,12 @@
         <div class="w-full p-2  flex">
           {{ getUser.first_name }}
         </div>
+        <div v-if="!!getUser.followers" class="w-full p-2  flex">
+          followers {{ getUser.followers.length }}
+        </div>
+        <div v-if="!!getUser.following" class="w-full p-2  flex">
+          following {{ getUser.following.length }}
+        </div>
       </div>
       <div class="flex flex-col-reverse border-b">
       </div>

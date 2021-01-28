@@ -13,6 +13,21 @@
         <div class="w-full p-2  flex">
           {{ user.first_name }}
         </div>
+        <div v-if="!!user.followers" class="w-full p-2  flex">
+          followers {{ user.followers.length }}
+        </div>
+        <div v-if="!!user.following" class="w-full p-2  flex">
+          following {{ user.following.length }}
+        </div>
+        <div v-if="$store.state.me.id!==user.id" class="w-full p-2  flex">
+          <button v-if="!followed" @click="follow">
+            follow
+          </button>
+          <button v-if="followed" @click="follow">
+            unfollow
+          </button>
+
+        </div>
       </div>
       <div class="flex flex-col-reverse border-b">
       </div>
@@ -41,6 +56,7 @@ export default {
     return {
       id: 'userPage',
       s: this.$route.params.id,
+      followed: false,
       user: {}
     }
   },
@@ -49,20 +65,32 @@ export default {
       return this.$store.state.me
     },
     ...mapGetters([
-      "getTrends", "getTabs"]),
+      "getTrends", "getTabs", "getMe"]),
     ...mapActions([
-      "setMe"
+      "setMe", "followUser"
     ]),
   },
   mounted() {
     this.setMe
-    console.log(this.$route.params.id)
     let url = "user/?id=" + this.$route.params.id + ""
-    console.log(url);
     axios.get(url)
         .then(response => {
-          this.user = response.data
-        })
+              this.user = response.data
+              this.followed = this.user.followers.reduce((acc, cv) => {
+                    if (cv.user_id === this.$store.state.me.id) {
+                      return true
+                    }
+                    return acc
+                  }, false
+              )
+            }
+        )
+  },
+  methods: {
+    follow() {
+      axios.post('follow/', {"following_user_id": parseInt(this.$route.params.id)}).then(() => {
+      })
+    }
   }
 }
 </script>
