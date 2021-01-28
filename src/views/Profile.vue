@@ -8,7 +8,7 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img :src="getUser.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="`${base_url}${getUser.profile_image_url}`" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
           {{ getUser.first_name }} {{ getUser.last_name }}
@@ -51,6 +51,7 @@ export default {
   data() {
     return {
       id: 'userPage',
+      base_url: 'http://127.0.0.1:8000',
     }
   },
   props: ['username', 'title'],

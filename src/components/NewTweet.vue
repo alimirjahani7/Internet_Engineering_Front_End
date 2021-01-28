@@ -1,7 +1,7 @@
 <template>
   <div class="px-5 py-3 border-b-8 border-lighter flex">
     <div class="flex-none">
-      <img :src="getUser.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+      <img :src="`${base_url}${getUser.profile_image_url}`" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
     </div>
     <form v-on:submit.prevent="addNewTweet" class="w-full px-4 relative">
       <textarea v-model="tweet.content" placeholder="What's up?" class="mt-3 pb-3 w-full focus:outline-none"/>
@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       tweet: {'content': ''},
-      tweets: []
+      tweets: [],
+      base_url: 'http://127.0.0.1:8000',
     }
   },
   computed: {

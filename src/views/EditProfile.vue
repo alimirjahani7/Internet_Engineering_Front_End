@@ -9,7 +9,11 @@
         </h2>
       </div>
       <div class="flex-none mr-2">
-        <div v-if="shown_pic" :style="{'background-image': `url(${shown_pic}`}" class="h-12 w-12 rounded-full flex-none"></div>
+        <div v-if="shown_pic" :style="{'background-image': `url(${shown_pic})`}"
+             class="h-12 w-12 rounded-full flex-none"></div>
+<!--        <img v-if="shown_pic" :src="`url(${shown_pic})`"-->
+<!--             class="flex-none w-12 h-12 rounded-full border border-lighter" />-->
+        <img v-else-if="profile_image_url" :src="`${base_url}${profile_image_url}`" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
       </div>
       <form class="mt-8 space-y-6" enctype="multipart/form-data" @submit.prevent="handleEdit">
         <div class="rounded-md shadow-sm -space-y-px">
@@ -46,7 +50,7 @@
         <div>
           <button
               class="group relative w-full justify-center py-2 px-4  text-sm font-medium rounded-full text-white bg-blue hover:bg-darkblue ">
-           Save
+            Save
           </button>
         </div>
       </form>
@@ -68,7 +72,9 @@ export default {
       last_name: '',
       email: '',
       shown_pic: null,
-      profile_image: null
+      profile_image: null,
+      profile_image_url: "",
+      base_url: 'http://127.0.0.1:8000',
     }
   },
   created() {
@@ -82,34 +88,37 @@ export default {
         this.first_name = response.data.first_name;
         this.last_name = response.data.last_name;
         this.email = response.data.email;
-        this.profile_image = response.data.profile_image;
+        this.profile_image_url = response.data.profile_image_url;
       })
-      console.log(this.profile_image)
-      // this.Preview();
+      console.log(this.profile_image_url)
+      this.Preview();
     },
     selectFile(event) {
       // console.log("select file")
       this.profile_image = event.target.files[0];
-      // console.log(this.profile_image)
       this.Preview();
     },
     handleEdit() {
       // console.log("in handle edit")
-      const formData = new FormData();
-      formData.append('username', this.username);
-      formData.append('first_name', this.first_name);
-      formData.append('last_name', this.last_name);
-      formData.append('email', this.email);
-      formData.append('profile_image', this.profile_image);
+      const imageForm = new FormData();
+      imageForm.append('image', this.profile_image);
       try {
-        axios.patch('user/', formData)
-        this.$router.push("/profile");
+        axios.post('upload_profile/', imageForm).then(response => {
+          this.profile_image_url = response.data.image;
+          axios.patch('user/', {
+            username: this.username,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            profile_image_url: this.profile_image_url
+          })
+          this.$router.push("/profile");
+        })
       } catch (e) {
         console.log(e)
       }
     },
     Preview() {
-      // console.log("preview")
       if (!this.profile_image)
         return;
       let reader = new FileReader();

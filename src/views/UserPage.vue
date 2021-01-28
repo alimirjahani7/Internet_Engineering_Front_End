@@ -8,7 +8,7 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img :src="user.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="user.profile_image_url" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
           {{ user.first_name + ' ' + user.last_name }}
@@ -52,11 +52,13 @@ export default {
     Trending,
     SideNav,
   },
+  // props: ['base_url'],
   data() {
     return {
       id: 'userPage',
       s: this.$route.params.id,
       followed: false,
+      base_url: 'http://127.0.0.1:8000',
       user: {}
     }
   },

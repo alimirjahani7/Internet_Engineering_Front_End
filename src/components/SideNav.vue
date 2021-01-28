@@ -22,7 +22,7 @@
     <div class="lg:w-full relative">
       <button @click="dropdown = true"
               class="flex items-center w-full hover:bg-lightblue rounded-full p-2 focus:outline-none">
-        <img :src="getMe.profile_image" class="w-10 h-10 rounded-full border border-lighter"/>
+        <img :src="`${base_url}${getMe.profile_image_url}`" class="w-10 h-10 rounded-full border border-lighter"/>
         <div class="hidden lg:block ml-4">
           <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} {{ getMe.last_name }}</p>
           <p class="text-sm leading-tight"> @{{ getMe.username }} </p>
@@ -33,7 +33,7 @@
            class="absolute bottom-0 left-0 w-64 rounded-lg shadow-md border-lightest bg-white mb-16">
         <router-link to="/profile">
           <button class="p-3 flex items-center w-full hover:bg-lightest p-2 focus:outline-none">
-            <img :src="getMe.profile_image" class="w-10 h-10 rounded-full border border-lighter"/>
+            <img :src="`${base_url}${getMe.profile_image_url}`" class="w-10 h-10 rounded-full border border-lighter"/>
             <div class="ml-4">
               <p class="text-sm font-bold leading-tight"> {{ getMe.first_name }} {{ getMe.last_name }}</p>
               <p class="text-sm leading-tight">@{{ getMe.username }} </p>
@@ -41,11 +41,12 @@
             <i class="fas fa-check ml-auto test-blue"></i>
           </button>
         </router-link>
-        <button @click="dropdown = false"
-                class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
-          Add an existing account
-        </button>
-
+        <router-link to="/edit">
+          <button @click="dropdown = false"
+                  class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
+            Edit Profile
+          </button>
+        </router-link>
         <button @click="dropdown = false; handleLogOut();"
                 class="w-full text-left hover:bg-lightest border-t border-lighter p-3 test-sm focus:outline-none">
           Log out @{{ getMe.username }}
@@ -64,6 +65,7 @@ export default {
   data() {
     return {
       dropdown: false,
+      base_url: 'http://127.0.0.1:8000',
     }
   },
   computed: {

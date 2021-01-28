@@ -28,6 +28,7 @@ export default {
   },
   data() {
     return {
+      base_url: 'http://127.0.0.1:8000',
       notifs: [
         {
           'profile_image': 'https://pbs.twimg.com/profile_images/1273242022892244997/5RfTzI9z_400x400.jpg',

@@ -2,7 +2,7 @@
   <div>
     <div v-if="notif.action==='like'" class="w-full p-2  hover:bg-lighter flex ">
       <div class="flex-none mr-2">
-        <img :src="`${notif.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
+        <img :src="`${base_url}${notif.profile_image_url}`" class="h-12 w-12 rounded-full flex-none"/>
       </div>
       <div>
         <div>{{ notif.user }} liked your tweet</div>
@@ -11,7 +11,7 @@
     </div>
     <div v-if="notif.action==='retweet'" class="w-full p-2  hover:bg-lighter flex ">
       <div class="flex-none mr-2">
-        <img :src="`${notif.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
+        <img :src="`${base_url}${notif.profile_image_url}`" class="h-12 w-12 rounded-full flex-none"/>
       </div>
       <div>
         <div>{{ notif.user }} retweeted your Tweet</div>
@@ -20,7 +20,7 @@
     </div>
     <div v-if="notif.action==='follow'" class="w-full p-2  hover:bg-lighter flex ">
       <div class="flex mr-2 ">
-        <img :src="`${notif.profile_image}`" class="h-12 w-12 rounded-full flex-none"/>
+        <img :src="`${notif.profile_image_url}`" class="h-12 w-12 rounded-full flex-none"/>
       </div>
       <div class="flex-none mr-2 p-1">
         <div>{{ notif.user }} followed you </div>
@@ -32,7 +32,8 @@
 <script>
 export default {
   name: "Notification",
-  props: ['notif']
+  props: ['notif', 'base_url'],
+
 }
 </script>
 
