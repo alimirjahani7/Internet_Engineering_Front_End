@@ -7,6 +7,7 @@ import Register from '@/views/Register.vue'
 import User from "@/views/UserPage";
 import Profile from "@/views/Profile";
 import Notifications from "@/views/Notifications"
+import EditProfile from '@/views/EditProfile.vue';
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
             path: '/notifications',
             name: 'notifications',
             component: Notifications
+        },
+        {
+            path: '/edit',
+            name: 'editProfile',
+            component: EditProfile
         }
     ]
 })
