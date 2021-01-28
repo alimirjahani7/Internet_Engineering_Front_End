@@ -4,7 +4,7 @@ export default [
         name: 'Elon Musk',
         username: 'teslaBoy',
         time: '20 min',
-        content: 'Should I just quarantine on mars??',
+        text: 'Should I just quarantine on mars??',
         comments: '1,000',
         retweets: '550',
         like: '1,000,003'
@@ -14,7 +14,7 @@ export default [
         name: 'Kevin Hart',
         username: 'miniRock',
         time: '55 min',
-        content: 'Should me and the rock do another sub-par movie together????',
+        text: 'Should me and the rock do another sub-par movie together????',
         comments: '2,030',
         retweets: '50',
         like: '20,003',
@@ -25,7 +25,7 @@ export default [
         name: 'Elon Musk',
         username: 'teslaBoy',
         time: '1.4 hr',
-        content: 'Haha just made a flame thrower. Should I sell them?',
+        text: 'Haha just made a flame thrower. Should I sell them?',
         comments: '100,000',
         retweets: '1,000,002',
         like: '5,000,003'
@@ -35,7 +35,7 @@ export default [
         name: 'Elon Musk',
         username: 'teslaBoy',
         time: '1.4 hr',
-        content: 'Just did something crazy',
+        text: 'Just did something crazy',
         comments: '100,500',
         retweets: '1,000,032',
         like: '5,000,103'

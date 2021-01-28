@@ -40,14 +40,7 @@ export default {
     ]),
     addNewTweet() {
       let newTweet = {
-        profile_image: this.getMe.profile_image,
-        name: this.getMe.name,
-        username: this.getMe.username,
-        time: 'now',
-        comments: '0',
-        retweets: '0',
-        like: '0',
-        content: this.tweet.content
+        text: this.tweet.content
       };
       this.addTweet(newTweet)
     }

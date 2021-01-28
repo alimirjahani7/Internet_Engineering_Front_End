@@ -80,7 +80,7 @@ export default {
         });
         localStorage.setItem('access-token', response.data.access);
         axios.defaults.headers.common ['Authorization'] = 'Bearer ' + localStorage.getItem('access-token')
-        this.$router.push('/home')
+        await this.$router.push('/home')
       } catch (e) {
         this.error = 'Wrong user/password'
       }

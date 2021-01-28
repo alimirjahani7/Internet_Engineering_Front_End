@@ -40,11 +40,5 @@ export default {
     ...mapGetters([
       'getTweets', "getTrends", "getTabs", "getMe"])
   },
-  mounted() {
-    this.$store.dispatch('setMe').then((res) => {
-      console.log(res)
-      // console.log(this.$store.getters.getLastNameByName('John'));
-    })
-  },
 }
 </script>

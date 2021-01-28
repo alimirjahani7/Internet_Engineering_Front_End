@@ -8,15 +8,15 @@
       </div>
       <div class="w-full p-4  hover:bg-lighter flex">
         <div class="flex-none">
-          <img :src="getUser(username).profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
+          <img :src="getUser.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
-          {{ getUser(username).name }}
+          {{ getUser.first_name }}
         </div>
       </div>
       <div class="flex flex-col-reverse border-b">
       </div>
-      <show-tweets :tweets="getUser(username).tweets"/>
+      <show-tweets :tweets="getUser.tweets"/>
     </div>
     <Trending :trending="getTrends"></Trending>
   </div>
@@ -26,13 +26,13 @@
 import SideNav from "../components/SideNav";
 import Trending from "../components/Trending";
 
-import {mapGetters} from "vuex";
 import ShowTweets from "@/components/ShowTweets";
-// import axios from 'axios';
+import {mapGetters} from "vuex";
+// import axios from "axios";
 
 export default {
   name: 'User',
-  props: ['username','title'],
+  props: ['username', 'title'],
   components: {
     ShowTweets,
     Trending,
@@ -45,10 +45,15 @@ export default {
     }
   },
   computed: {
+    getUser() {
+      console.log(this.$store.state.me);
+      return this.$store.state.me
+    },
     ...mapGetters([
-      "getTrends",
-      "getTabs",
-      "getUser"])
+      "getTrends", "getTabs"])
   },
+  mounted() {
+    this.$store.dispatch("setMe");
+  }
 }
 </script>

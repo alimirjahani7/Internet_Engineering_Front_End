@@ -1,9 +1,11 @@
-
 export default {
     getTweets: (state) => {
         return state.tweets;
     },
-    getMe: async (state) => {
+    // getMe: (state) => {
+    //     return state.me
+    // },
+    getUser: (state) => {
         return state.me
     },
     getTrends: (state) => {
@@ -12,9 +14,10 @@ export default {
     getTabs: (state) => {
         return state.tabs;
     },
-    getUser: (state) => (username) => {
+    getMe: (state) => (username) => {
         let user = state.me
-        user['username'] = username
+        console.log(state.me)
+        console.log(username);
         return user
     }
 };

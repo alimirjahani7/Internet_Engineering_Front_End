@@ -16,7 +16,7 @@
 
         </router-link>
         <p class="py-2">
-          {{ tweet.content }}
+          {{ tweet.text }}
         </p>
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center text-sm text-dark">
