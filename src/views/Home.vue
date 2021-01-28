@@ -34,20 +34,17 @@ export default {
   data() {
     return {
       id: 'home',
-      tweet: {content: ''}
     }
   },
   computed: {
     ...mapGetters([
       'getTweets', "getTrends", "getTabs", "getMe"])
   },
-  methods: {
-    addNewTweet() {
-      let newTweet = {
-        content: this.tweet.content
-      };
-      this.tweets.push(newTweet)
-    }
-  }
+  mounted() {
+    this.$store.dispatch('setMe').then((res) => {
+      console.log(res)
+      // console.log(this.$store.getters.getLastNameByName('John'));
+    })
+  },
 }
 </script>

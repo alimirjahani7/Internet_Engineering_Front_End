@@ -7,9 +7,9 @@
       </button>
       <div>
         <router-link :to="tab.id" v-for="(tab,index) in tabs" :key="index"
-             :class="`focus:outline-none hover:text-blue flex items-center py-2 px-4 hover:bg-lightblue rounded-full mr-auto mb-3`">
-            <i :class="`${ tab.icon } text-2xl mr-4 text-left`"></i>
-            <p class="text-lg font-semibold text-left hidden lg:block"> {{ tab.title }} </p>
+                     :class="`focus:outline-none hover:text-blue flex items-center py-2 px-4 hover:bg-lightblue rounded-full mr-auto mb-3`">
+          <i :class="`${ tab.icon } text-2xl mr-4 text-left`"></i>
+          <p class="text-lg font-semibold text-left hidden lg:block"> {{ tab.title }} </p>
 
         </router-link>
       </div>
@@ -73,7 +73,7 @@ export default {
   methods: {
     handleLogOut() {
       localStorage.removeItem('token')
-      this.$store.dispatch('setMe', null)
+      // this.$store.dispatch('setMe', null)
       this.$router.push('/');
     }
   }
