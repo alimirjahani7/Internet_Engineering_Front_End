@@ -80,9 +80,6 @@ export default {
     },
 
     addNewTweet() {
-      let newTweet = {
-        text: this.tweet.content
-      };
 
       if (this.tweetCharCount > this.limit)
         return
@@ -106,11 +103,8 @@ export default {
           console.log(e)
         }
       }
-      this.addTweet(newTweet);
-      this.tweet.content = '';
-      this.tweet.image = null;
-      this.image_url = '';
-      this.shown_pic = '';
+      // this.addTweet(newTweet);
+
     },
     updateUser(withImage) {
       let data = {
@@ -118,7 +112,11 @@ export default {
       }
       if (withImage)
         data.image = this.image_url;
-      axios.post('tweet/', data)
+      this.addTweet(data);
+      this.tweet.content = '';
+      this.tweet.image = null;
+      this.image_url = '';
+      this.shown_pic = '';
       // this.$router.push("/profile");
     },
   },

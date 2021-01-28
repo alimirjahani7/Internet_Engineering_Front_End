@@ -15,6 +15,8 @@
           </div>
 
         </router-link>
+<!--        <img :src="`${base_url}${getUser.profile_image_url}`"-->
+<!--             class="flex-none w-12 h-12 rounded-full border border-lighter"/>-->
         <p class="py-2">
           {{ tweet.text }}
           {{ getMe.id }}
