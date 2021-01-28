@@ -8,7 +8,7 @@
       <div class="w-full">
         <router-link :to="'/user/'+tweet_user.id">
           <div class="flex items-center w-full">
-            <p class="font-semibold"> {{ tweet_user.first_name }}  {{ tweet_user.last_name }}</p>
+            <p class="font-semibold"> {{ tweet_user.first_name }} {{ tweet_user.last_name }}</p>
             <p class="text-sm text-dark ml-2"> @{{ tweet_user.username }} </p>
             <p class="text-sm text-dark ml-2"> {{ tweet.date.slice(0, 10) }} </p>
             <i v-if="$store.state.me.id===tweet.user_id" class="fas  text-dark ml-auto">Delete</i>
@@ -26,7 +26,8 @@
             <!--            <p> {{ tweet.retweets }} </p>-->
           </div>
           <div class="flex items-center text-sm text-dark">
-            <i class="fas fa-heart mr-3"></i>
+            <i v-if="!liked" @click="like" class="far fa-heart mr-3"></i>
+            <i v-if="liked" @click="like" class="fas fa-heart mr-3"></i>
             <p v-if="!!tweet.likes"> {{ tweet.likes.length }} </p>
           </div>
           <div class="flex items-center text-sm text-dark">
@@ -51,25 +52,36 @@ export default {
     ...mapActions([
       "setMe"
     ]),
-    getMeUser() {
-      return this.$store.state.me
-    },
     ...mapGetters([
       "getTrends", "getTabs"]),
     ...mapActions([
       "setMe"
     ]),
   },
+  methods: {
+    like() {
+      this.liked = !this.liked
+      axios.post('like/' + this.tweet.id + "/", {}).then(() => {
+      })
+    }
+  },
   data() {
     return {
-      tweet_user: {}
+      tweet_user: {},
+      liked: false
     };
   },
   mounted() {
+    this.liked = this.tweet.likes.reduce((acc, cv) => {
+          if (cv.user_id === this.$store.state.me.id) {
+            return true
+          }
+          return acc
+        }, false
+    )
     // this.setMe
     if (this.tweet.user_id !== undefined) {
       let url = "user/?id=" + this.tweet.user_id + ""
-      console.log(url);
       axios.get(url)
           .then(response => {
             this.tweet_user = response.data

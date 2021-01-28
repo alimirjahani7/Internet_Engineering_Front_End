@@ -84,9 +84,7 @@ export default {
         last_name: this.last_name,
         username: this.username
       })
-
       console.log(response);
-
       this.$router.push("/login");
 
     }

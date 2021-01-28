@@ -11,7 +11,7 @@
           <img :src="user.profile_image" class="flex-none w-12 h-12 rounded-full border border-lighter"/>
         </div>
         <div class="w-full p-2  flex">
-          {{ user.first_name }} {{ user.last_name }}
+          {{ user.first_name + ' ' + user.last_name }}
         </div>
         <div v-if="!!user.followers" class="w-full p-2  flex">
           followers {{ user.followers.length }}
@@ -88,6 +88,7 @@ export default {
   },
   methods: {
     follow() {
+      this.followed = !this.followed
       axios.post('follow/', {"following_user_id": parseInt(this.$route.params.id)}).then(() => {
       })
     }

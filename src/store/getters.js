@@ -14,10 +14,8 @@ export default {
     getTabs: (state) => {
         return state.tabs;
     },
-    getMe: (state) => (username) => {
+    getMe: (state) => {
         let user = state.me
-        console.log(state.me)
-        console.log(username);
         return user
     }
 };
