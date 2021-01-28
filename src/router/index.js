@@ -8,6 +8,7 @@ import User from "@/views/UserPage";
 import Profile from "@/views/Profile";
 import Notifications from "@/views/Notifications"
 import EditProfile from '@/views/EditProfile.vue';
+import Search from "@/views/Search";
 
 Vue.use(Router)
 
@@ -54,6 +55,12 @@ export default new Router({
             path: '/edit',
             name: 'editProfile',
             component: EditProfile
-        }
+        },
+        {
+            path: '/search',
+            name: 'search',
+            component: Search
+        },
+
     ]
 })
